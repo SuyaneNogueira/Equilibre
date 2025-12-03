@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import './App.css'
-import { Toaster } from "sonner";
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AuthProvider } from './Front-end/Auth/AuthContext';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      
-    </>
-  )
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;
