@@ -1,0 +1,148 @@
+/* ----- FOOTER ----- */
+
+.rodape {
+  background: #f9fafb;
+  padding: 60px 20px 40px 20px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 60px;
+}
+
+.container-rodape{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Grid */
+.grade-rodape {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grade-rodape {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Brand */
+.marquinha-rodape {
+  max-width: 300px;
+}
+
+.footer-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-rodape {
+  width: 40px;
+  height: 40px;
+  background: #6BAF96;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.titulo-rodape {
+  font-size: 22px;
+  font-weight: bold;
+  color: #6BAF96;
+}
+
+.descricao-rodape {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #6b7280;
+}
+
+/* Section titles */
+.cabecalho-rodape {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1B4332;
+  margin-bottom: 15px;
+}
+
+/* Lists */
+.lista-rodape {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link-rodape {
+  color: #6b7280;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 6px 0;
+  transition: 0.2s;
+}
+
+.link-rodape:hover {
+  color: #16a34a;
+}
+
+/* Contact */
+.item-contato-rodape {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.footer-icon {
+  color: #6BAF96;
+}
+
+/* Bottom */
+.divisao-rodape {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 40px;
+  padding-top: 25px;
+}
+
+.parte-baixa-rodape{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .parte-baixa-rodape {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+}
+
+.copia-rodape {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.parte-baixa-botoes-rodape {
+  display: flex;
+  gap: 16px;
+}
+
+.coracao-rodape {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.icone-coracao-rodape {
+  color: #ef4444;
+}
