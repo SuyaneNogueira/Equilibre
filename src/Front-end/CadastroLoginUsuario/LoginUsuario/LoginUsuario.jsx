@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../Auth/AuthContext';
 import './LoginUsuario.css';
 
 const LoginUsuario = () => {
   const navigate = useNavigate();
-  const { login, isLoading } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     senha: '',
@@ -17,6 +16,21 @@ const LoginUsuario = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Função de login
+  const login = (email, senha) => {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const foundUser = users.find(u => u.email === email && u.senha === senha);
+    
+    if (foundUser) {
+      // Remover senha antes de salvar no localStorage
+      const userToSave = { ...foundUser, senha: undefined };
+      localStorage.setItem('currentUser', JSON.stringify(userToSave));
+      return { success: true, user: foundUser };
+    } else {
+      return { success: false, error: 'Email ou senha incorretos' };
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -25,12 +39,20 @@ const LoginUsuario = () => {
       return;
     }
     
-    const result = await login(formData.email, formData.senha);
+    setIsLoading(true);
     
-    if (result.success) {
-      navigate('/dashboard');
-    } else {
-      setErrors({ geral: result.error });
+    try {
+      const result = login(formData.email, formData.senha);
+      
+      if (result.success) {
+        navigate('/dashboard');
+      } else {
+        setErrors({ geral: result.error });
+      }
+    } catch (error) {
+      setErrors({ geral: 'Erro ao fazer login' });
+    } finally {
+      setIsLoading(false);
     }
   };
 

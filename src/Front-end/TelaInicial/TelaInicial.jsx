@@ -1,18 +1,22 @@
-import useAuth from "../../hooks/useAuth.js";
 // import { getLoginUrl } from "@/const";
 import { ArrowRight, Heart, Lightbulb, Users } from "lucide-react";
-import { Link } from "wouter";
 import "./TelaInicial.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { Link } from "react-router-dom";
 
 export default function Home() {
-  const { isAuthenticated } = useAuth();
+  // Verificar autenticação diretamente no localStorage
+  const isAuthenticated = () => {
+    const user = localStorage.getItem('currentUser');
+    return !!user;
+  };
+
+  const userAuthenticated = isAuthenticated();
 
   return (
     <div className="container-tela-inicial">
       <Header/>
-      {/* HERO */}
       <section className="sessao-herois">
         <div className="conteudo-herois">
           <div className="logo-herois">
@@ -29,21 +33,21 @@ export default function Home() {
           </p>
 
           <div className="botoes-herois">
-            {isAuthenticated ? (
+            {userAuthenticated ? (
               <>
-                <Link href="/dashboard" className="botao-principal">
+                <Link to="/dashboard" className="botao-principal">
                   Ir para Dashboard <ArrowRight className="icon" />
                 </Link>
 
-                <Link href="/Diario" className="botao-dois-titulo">
+                <Link to="/Diario" className="botao-dois-titulo">
                   Abrir Diário Emocional
                 </Link>
               </>
             ) : (
               <>
-                <a className="botao-principal">
+                <Link to="/CadastroUsuario" className="botao-principal">
                   Começar Agora <ArrowRight className="icon" />
-                </a>
+                </Link>
 
                 <a href="#features" className="botao-dois-titulo">
                   Conhecer Mais
@@ -111,21 +115,20 @@ export default function Home() {
           </div>
         </div>
 
-        {!isAuthenticated && (
+        {!userAuthenticated && (
           <div className="features-cta">
-            <a className="botao-principal">
+            <Link to="/CadastroUsuario" className="botao-principal">
               Comece sua Jornada Agora <ArrowRight className="icon" />
-            </a>
+            </Link>
           </div>
         )}
       </section>
 
       {/* CRISIS BUTTON */}
-      <button className="botao-crise">🆘
-        
+      <button className="botao-crise">
+        🆘 Ajuda de Emergência
       </button>
       <Footer/>
     </div>
   );
 }
-//href={getLoginUrl()}

@@ -3,7 +3,7 @@ import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 // import { getLoginUrl } from "@/const"
 import { LogOut, Menu, X } from "lucide-react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import "./Header.css"; 
 
 export default function Header() {
@@ -24,7 +24,6 @@ export default function Header() {
 
         {/* Menu Desktop */}
         <nav className="nav-desktop-cabecalho">
-          <Link href="/" className="nav-link-cabecalho">Início</Link>
 
           {isAuthenticated && (
             <>
@@ -63,12 +62,11 @@ export default function Header() {
         >
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
-      </div>
+      </div> 
 
       {/* Menu Mobile */}
       {isMenuOpen && (
         <div className="nav-celular-cabecalho">
-          <Link href="/" className="link-celular-cabecalho">Início</Link>
 
           {isAuthenticated && (
             <>
@@ -86,9 +84,9 @@ export default function Header() {
                 Sair
               </button>
             ) : (
-              <a className="btn-primary full" >
+              <Link to="/CadastroUsuario" className="btn-primary full" >
                 Entrar
-              </a>
+              </Link>
             )}
           </div>
         </div>
